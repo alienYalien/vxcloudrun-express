@@ -1,0 +1,27 @@
+{
+  "containers": [
+    {
+      "name": "hotel",
+      "domain": "",
+      "ip": "",
+      "containerId": "36ff7f578d3da820adb2c67f10b4b5261a421dd9b60ba2641e60b9e1cbdde839"
+    }
+  ],
+  "config": {
+    "hotel": {
+      "remark": "",
+      "dockerfilePath": "Dockerfile",
+      "buildDir": "",
+      "minNum": 0,
+      "maxNum": 50,
+      "cpu": 0.5,
+      "mem": 1,
+      "policyType": "cpu",
+      "policyThreshold": 60,
+      "envParams": {},
+      "customLogs": "stdout",
+      "containerPort": 80,
+      "initialDelaySeconds": 2
+    }
+  }
+}

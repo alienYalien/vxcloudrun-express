@@ -1,0 +1,7 @@
+{
+    "host": "10.6.107.20",
+    "user": "root",      
+    "password": "MnAG72QA", 
+    "port": "3306",       
+    "database": "nodejs_demo"  
+  }
