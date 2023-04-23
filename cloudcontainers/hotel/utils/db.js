@@ -1,10 +1,10 @@
 
-const config = require('../configs').config.mysql;
+const config = require('../configs').config;
 
 const { Sequelize, DataTypes } = require("sequelize");
 
 // 从环境变量中读取数据库配置
-const { MYSQL_USERNAME='root', MYSQL_PASSWORD='MnAG72QA', MYSQL_ADDRESS='10.6.107.20:3306' } = process.env;
+const { MYSQL_USERNAME=config.mysql.MYSQL_USERNAME, MYSQL_PASSWORD=config.mysql.MYSQL_PASSWORD, MYSQL_ADDRESS=config.mysql.MYSQL_ADDRESS } = process.env;
 
 const [host, port] = MYSQL_ADDRESS.split(":");
 

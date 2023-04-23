@@ -1,4 +1,4 @@
-export const config = {
+exports.config = {
 	mysql:{
 		MYSQL_USERNAME:'root',
 		MYSQL_PASSWORD:'MnAG72QA',
