@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const { init: initDB, Counter } = require("./db");
+const { init: initDB, Counter } = require("./utils/db");
 
 const logger = morgan("tiny");
 
@@ -11,6 +11,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(logger);
+
+// //根据文件名自动整体配置 routes 文件夹  ps:文件命名规则要规范
+// var fs = require('fs');
+// var routesPath = path.join(__dirname,'routes');
+// var files = fs.readdirSync(routesPath);
+// files.forEach(function(item) {
+//     var file = item.toString();
+//     var fileName = file.substr(0, file.indexOf("."));
+//     console.log("add Routes:"+fileName);
+//     var routes = require('./routes/'+fileName);
+//     app.use('/', routes);
+// });
 
 // 首页
 app.get("/", async (req, res) => {
@@ -60,3 +72,4 @@ async function bootstrap() {
 }
 
 bootstrap();
+

@@ -1,5 +1,5 @@
 
-const config = require('./configs').config.mysql;
+const config = require('../configs').config.mysql;
 
 const { Sequelize, DataTypes } = require("sequelize");
 

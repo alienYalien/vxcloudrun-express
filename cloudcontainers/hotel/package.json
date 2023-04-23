@@ -2,9 +2,9 @@
   "name": "wxcloudrun-express",
   "version": "1.0.0",
   "description": "微信云托管 express 框架模版",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "Apache-2.0",
