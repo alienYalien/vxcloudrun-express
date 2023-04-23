@@ -12,6 +12,9 @@ exports.config = {
 	{
 		IP:'localhost',
 		PORT:'6001',
-	}
+	},
+	session:{
+        time:15*60*1000
+    }
 };
 

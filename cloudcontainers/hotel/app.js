@@ -6,13 +6,27 @@ const { init: initDB, Counter } = require("./utils/db");
 const logger = morgan("tiny");
 const request = require('request');
 const http = require('./utils/http');
-const config = require('./configs').config;
-
+const configs = require('./configs').config;
 const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(logger);
+
+/** session */
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
+app.use(cookieParser());
+app.use(cookieParser('sessiontest'));
+app.use(session({
+    secret: 'sessiontest',//与cookieParser中的一致
+    resave: false,
+    saveUninitialized:true,
+    cookie:{
+        maxAge: configs.session.time // default session expiration is set to 1 hour
+    }
+}));
 
 //http 发送数据
 function test007SendMsg() {
@@ -65,8 +79,11 @@ app.get("/api/count", async (req, res) => {
 // 小程序调用，获取微信 Open ID
 app.get("/api/wx_openid", async (req, res) => {
   if (req.headers["x-wx-source"]) {
-    res.send(req.headers["x-wx-openid"]);
-    console.log("wx_openid",req.headers["x-wx-openid"]);
+    var openid = req.headers["x-wx-openid"]
+    // var sessionKey = req.params.sessionKey;
+    req.session.openid = openid;
+    res.send(openid);
+    console.log("wx_openid",openid);
   }
 });
 
