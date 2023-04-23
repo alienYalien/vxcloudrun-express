@@ -3,7 +3,8 @@
     {
       "name": "hotel",
       "domain": "",
-      "ip": ""
+      "ip": "",
+      "containerId": "27b650ab859c7159f2d912fa0faad38088130211557d86595a933a4c100b8604"
     }
   ],
   "config": {
