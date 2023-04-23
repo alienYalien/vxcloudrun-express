@@ -3,8 +3,10 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { init: initDB, Counter } = require("./utils/db");
-
 const logger = morgan("tiny");
+const request = require('request');
+const http = require('./utils/http');
+const config = require('./configs').config;
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
@@ -24,9 +26,25 @@ app.use(logger);
 //     app.use('/', routes);
 // });
 
+function test007SendMsg() {
+  var testInfo = {
+    a:"a1",
+    b:"b2",
+    show_env:"1"
+  }
+  http.get('http://json.parser.online.fr',null,"/beta", testInfo, function (ret, data) {
+    if (ret) {
+      console.log("test007SendMsg suc ", data);
+    }
+    else {
+        console.log("test007SendMsg fail ", ret);//data.errcode, data.errmsg)
+    }
+  });
+}
+
 // 首页
 app.get("/", async (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "views/index.html"));
 });
 
 // 更新计数
@@ -68,8 +86,10 @@ async function bootstrap() {
   await initDB();
   app.listen(port, () => {
     console.log("启动成功", port);
+    test007SendMsg();
   });
 }
 
 bootstrap();
+
 
