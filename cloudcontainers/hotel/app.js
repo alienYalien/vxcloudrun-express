@@ -14,27 +14,17 @@ app.use(express.json());
 app.use(cors());
 app.use(logger);
 
-// //根据文件名自动整体配置 routes 文件夹  ps:文件命名规则要规范
-// var fs = require('fs');
-// var routesPath = path.join(__dirname,'routes');
-// var files = fs.readdirSync(routesPath);
-// files.forEach(function(item) {
-//     var file = item.toString();
-//     var fileName = file.substr(0, file.indexOf("."));
-//     console.log("add Routes:"+fileName);
-//     var routes = require('./routes/'+fileName);
-//     app.use('/', routes);
-// });
-
+//http 发送数据
 function test007SendMsg() {
   var testInfo = {
     a:"a1",
     b:"b2",
     show_env:"1"
   }
-  http.get('http://json.parser.online.fr',null,"/beta", testInfo, function (ret, data) {
+  //http://httpbin.org 3.230.204.70
+  http.get('3.230.204.70',null,"/ip", testInfo, function (ret, data) {
     if (ret) {
-      console.log("test007SendMsg suc ", data);
+      console.log("test007SendMsg suc ", data);//data.origin
     }
     else {
         console.log("test007SendMsg fail ", ret);//data.errcode, data.errmsg)

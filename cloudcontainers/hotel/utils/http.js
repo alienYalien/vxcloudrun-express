@@ -40,17 +40,17 @@ exports.post = function (host,port,path,data,callback) {
 	};  
 	  
 	var req = http.request(options, function (res) {  
-		// logger.fatal('STATUS: ' + res.statusCode);  
-		// logger.fatal('HEADERS: ' + JSON.stringify(res.headers));  
+		// console.error('STATUS: ' + res.statusCode);  
+		// console.error('HEADERS: ' + JSON.stringify(res.headers));  
 		res.setEncoding('utf8');  
 		res.on('data', function (chunk) {  
-			//logger.fatal('BODY: ' + chunk);
+			console.error('BODY: ' + chunk);
 			callback(chunk);
 		});  
 	});
 	  
 	req.on('error', function (e) {  
-		logger.error('post problem with request: ' + e.message);
+		console.error('post problem with request: ' + e.message);
 	});  
 	  
 	req.end(); 
@@ -64,18 +64,18 @@ exports.get2 = function (url,data,callback,safe) {
 		proto = https;
 	}
 	var req = proto.get(url, function (res) {  
-		//logger.fatal('STATUS: ' + res.statusCode);  
-		//logger.fatal('HEADERS: ' + JSON.stringify(res.headers));  
+		// console.error('STATUS: ' + res.statusCode);  
+		// console.error('HEADERS: ' + JSON.stringify(res.headers));  
 		res.setEncoding('utf8');  
 		res.on('data', function (chunk) {  
-			//logger.fatal('BODY: ' + chunk);
+			// console.error('BODY: ' + chunk);
 			var json = JSON.parse(chunk);
 			callback(true,json);
 		});  
 	});
 	  
 	req.on('error', function (e) {  
-		// logger.error('get2 problem with request: ' + e.message);
+		console.error('get2 problem with request: ' + e.message);
 		callback(false,e);
 	});  
 	  
@@ -97,20 +97,18 @@ exports.get = function (host,port,path,data,callback,safe) {
 		proto = https;
 	}
 	var req = proto.request(options, function (res) {  
-		//logger.fatal('STATUS: ' + res.statusCode);  
-		//logger.fatal('HEADERS: ' + JSON.stringify(res.headers));  
+		// console.error('STATUS: ' + res.statusCode);  
+		// console.error('HEADERS: ' + JSON.stringify(res.headers));  
 		res.setEncoding('utf8');  
 		res.on('data', function (chunk) {  
-			// logger.fatal('BODY: ' + chunk);
-			console.log('BODY: ' + chunk);
+			// console.error('BODY: ' + chunk);
 			var json = JSON.parse(chunk);
 			callback(true,json);
 		});  
 	});
 	  
 	req.on('error', function (e) {  
-		console.log('get problem with path:%j,  request: %j',path, e.message);
-		// logger.error('get problem with path:%j,  request: %j',path, e.message);
+		console.error('get problem with path:%j,  request: %j',path, e.message);
 		callback(false,e);
 	});  
 	  
